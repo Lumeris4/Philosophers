@@ -1,11 +1,11 @@
 MAKEFLAGS += --silent
 
-NAME = philosophers
+NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c errors.c utils.c
+SRCS = main.c errors.c utils.c init.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

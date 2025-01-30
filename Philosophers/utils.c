@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:46:46 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/01/28 10:26:29 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:15:40 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ bool	ft_isdigit_str(char *str)
 	}
 	return (true);
 }
-
