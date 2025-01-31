@@ -5,7 +5,7 @@ NAME = philo
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = main.c errors.c utils.c init.c
+SRCS = main.c errors.c utils.c init.c check.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
