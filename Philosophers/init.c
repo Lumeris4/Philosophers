@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:03:02 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/01/30 14:21:31 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/01 16:20:19 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	init_data(t_data *data, char **argv)
 		return (printf("Failed memory allocated\n"), 0);
 	while (i < data->num_philos)
 		pthread_mutex_init(&data->forks[i++], NULL);
-	pthread_mutex_init(&data->print_mutex, NULL);
 	data->start_time = get_time_in_ms();
 	pthread_mutex_init(&data->game_mutex, NULL);
 	data->game_over = false;
