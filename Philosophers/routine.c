@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:06:03 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 16:11:01 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:00:33 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*philosopher_routine(void *arg)
 		if (detect_death(philo))
 			return (NULL);
 		if (philo->id % 2 == 0)
-			usleep(10 * 1000);
+			usleep(100);
 		philo_eat(philo);
 		if (detect_death(philo))
 			return (NULL);

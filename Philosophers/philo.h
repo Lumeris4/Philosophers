@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:40:54 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 16:20:37 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/01 17:13:00 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_philosopher
 	pthread_mutex_t	*right_fork;
 }	t_philosopher;
 
-int			ft_atoi(const char *nptr);
+long		ft_atoi(const char *nptr);
 bool		errors_check(int argc, char **argv);
 bool		ft_isdigit_str(char *str);
 int			init_data(t_data *data, char **argv);
