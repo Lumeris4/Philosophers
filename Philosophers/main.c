@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:36:35 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/01/31 14:02:30 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:17:39 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*philosopher_routine(void *arg)
 	if (philo->data->num_philos == 1)
 	{
 		printf("%lld %d has taken a fork\n", get_time_in_ms(), philo->id);
-		usleep(philo->data->time_to_die);
+		usleep(philo->data->time_to_die * 1000);
 		printf("%lld %d died\n", get_time_in_ms(), philo->id);
 		philo->data->game_over = true;
 	}
@@ -34,20 +34,20 @@ void	*philosopher_routine(void *arg)
 		{
 			printf("%lld %d died\n", get_time_in_ms(), philo->id);
 			philo->data->game_over = true;
-			break;
+			break ;
 		}
 		pthread_mutex_lock(philo->left_fork);
 		printf("%lld %d has taken a fork\n", get_time_in_ms(), philo->id);
 		pthread_mutex_lock(philo->right_fork);
 		printf("%lld %d has taken a fork\n", get_time_in_ms(), philo->id);
 		printf("%lld %d is eating\n", get_time_in_ms(), philo->id);
-		philo->last_meal = get_time_in_ms();
 		usleep(philo->data->time_to_eat);
+		philo->last_meal = get_time_in_ms();
 		philo->meals_eaten++;
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 		printf("%lld %d is sleeping\n", get_time_in_ms(), philo->id);
-		usleep(philo->data->time_to_sleep);
+		usleep(philo->data->time_to_sleep * 1000);
 		if (check_end(philo))
 			return (NULL);
 	}

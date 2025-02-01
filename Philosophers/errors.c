@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:16:37 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/01/30 15:11:29 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:55:18 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ bool	errors_check(int argc, char **argv)
 	while (argv[i])
 	{
 		if (!ft_isdigit_str(argv[i++]))
-			return (printf("The parameters should be only positive numbers"),
+			return (printf("The parameters should be only positive numbers\n"),
 				false);
 	}
 	if (ft_atoi(argv[1]) < 1)
-		return (printf("The program should have at least one philosophers\n",
-				false));
+		return (printf("The program should have at least one philosophers\n"),
+			false);
 	return (true);
 }
