@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:03:02 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 16:20:19 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:26:13 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long long	get_time_in_ms(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((tv.tv_sec * 1000 + tv.tv_usec / 1000));
 }
 
 int	init_data(t_data *data, char **argv)
@@ -40,6 +40,7 @@ int	init_data(t_data *data, char **argv)
 		pthread_mutex_init(&data->forks[i++], NULL);
 	data->start_time = get_time_in_ms();
 	pthread_mutex_init(&data->game_mutex, NULL);
+	pthread_mutex_init(&data->print_mutex, NULL);
 	data->game_over = false;
 	return (1);
 }

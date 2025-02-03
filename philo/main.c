@@ -6,11 +6,22 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:36:35 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 16:20:26 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:38:59 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	cleanup(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_philos)
+		pthread_mutex_destroy(&data->forks[i++]);
+	pthread_mutex_destroy(&data->game_mutex);
+	free(data->forks);
+}
 
 static void	start_threads(t_philosopher *philosophers, t_data *data)
 {
@@ -25,26 +36,7 @@ static void	start_threads(t_philosopher *philosophers, t_data *data)
 	}
 	i = 0;
 	while (i < data->num_philos)
-	{
-		pthread_mutex_lock(&data->game_mutex);
-		if (data->game_over)
-		{
-			pthread_mutex_unlock(&data->game_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&data->game_mutex);
 		pthread_join(philosophers[i++].thread, NULL);
-	}
-}
-
-static void	cleanup(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->num_philos)
-		pthread_mutex_destroy(&data->forks[i++]);
-	free(data->forks);
 }
 
 int	main(int argc, char **argv)

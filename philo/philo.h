@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:40:54 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 17:13:00 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:35:54 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				number_time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
 	long long		start_time;
 	pthread_mutex_t	game_mutex;
 	bool			game_over;
@@ -54,4 +55,5 @@ long long	get_time_in_ms(void);
 bool		check_end(t_philosopher *philo);
 bool		detect_death(t_philosopher *philo);
 void		*philosopher_routine(void *arg);
+void		mutex_print(t_philosopher *philo, char *str);
 #endif
