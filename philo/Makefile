@@ -3,7 +3,7 @@ MAKEFLAGS += --silent
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c errors.c utils.c init.c check.c routine.c
 OBJS = $(SRCS:.c=.o)

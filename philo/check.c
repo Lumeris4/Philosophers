@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:09:11 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/03 14:39:43 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:15:08 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	detect_death(t_philosopher *philo)
 	}
 	if (current_time - philo->last_meal >= philo->data->time_to_die)
 	{
-		printf("%lld %d died\n", current_time - philo->data->start_time, philo->id);
+		mutex_print(philo, "died\n");
 		philo->data->game_over = true;
 		pthread_mutex_unlock(&philo->data->game_mutex);
 		return (true);
