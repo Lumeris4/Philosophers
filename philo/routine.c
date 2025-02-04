@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:06:03 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/04 11:04:20 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:31:50 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	unlock_fork(pthread_mutex_t *first_fork,
 	pthread_mutex_t *second_fork)
 {
-	pthread_mutex_unlock(first_fork);
 	pthread_mutex_unlock(second_fork);
+	pthread_mutex_unlock(first_fork);
 }
 
 static void	philo_eat(t_philosopher *philo)
