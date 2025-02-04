@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:09:11 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/04 09:15:08 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/04 10:22:51 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ bool	detect_death(t_philosopher *philo)
 void	mutex_print(t_philosopher *philo, char *str)
 {
 	pthread_mutex_lock(&philo->data->print_mutex);
-	printf("%lld %d %s", get_time_in_ms() - philo->data->start_time, philo->id, str);
+	printf("%lld %d %s", get_time_in_ms() - philo->data->start_time,
+		philo->id, str);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
