@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:06:03 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/04 12:44:04 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:15:37 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static void	unlock_fork(pthread_mutex_t *first_fork,
 	pthread_mutex_t *second_fork)
 {
-	pthread_mutex_unlock(second_fork);
 	pthread_mutex_unlock(first_fork);
+	pthread_mutex_unlock(second_fork);
 }
 
 static int	take_forks(t_philosopher *philo, pthread_mutex_t *first,
@@ -80,7 +80,6 @@ void	*philosopher_routine(void *arg)
 		one_philo(philo);
 		return (NULL);
 	}
-	philo->last_meal = get_time_in_ms();
 	while (philo->meals_eaten != philo->data->number_time)
 	{
 		if (detect_death(philo))
@@ -95,6 +94,7 @@ void	*philosopher_routine(void *arg)
 		if (detect_death(philo))
 			return (NULL);
 		mutex_print(philo, "is thinking\n");
+		usleep(1000);
 	}
 	return (NULL);
 }
