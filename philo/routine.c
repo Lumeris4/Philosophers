@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:06:03 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/04 11:31:50 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:44:04 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ static void	unlock_fork(pthread_mutex_t *first_fork,
 {
 	pthread_mutex_unlock(second_fork);
 	pthread_mutex_unlock(first_fork);
+}
+
+static int	take_forks(t_philosopher *philo, pthread_mutex_t *first,
+	pthread_mutex_t *second)
+{
+	pthread_mutex_lock(first);
+	if (detect_death(philo))
+		return (pthread_mutex_unlock(first), 0);
+	mutex_print(philo, "has taken a fork\n");
+	pthread_mutex_lock(second);
+	if (detect_death(philo))
+		return (unlock_fork(first, second), 0);
+	mutex_print(philo, "has taken a fork\n");
+	return (1);
 }
 
 static void	philo_eat(t_philosopher *philo)
@@ -34,20 +48,15 @@ static void	philo_eat(t_philosopher *philo)
 		first_fork = philo->right_fork;
 		second_fork = philo->left_fork;
 	}
-	pthread_mutex_lock(first_fork);
-	if (detect_death(philo))
-		return (pthread_mutex_unlock(first_fork), (void)1);
-	mutex_print(philo, "has taken a fork\n");
-	pthread_mutex_lock(second_fork);
-	if (detect_death(philo))
-		return (unlock_fork(first_fork, second_fork));
-	mutex_print(philo, "has taken a fork\n");
+	if (!take_forks(philo, first_fork, second_fork))
+		return ;
 	mutex_print(philo, "is eating\n");
-	philo->last_meal = get_time_in_ms();
 	usleep(philo->data->time_to_eat * 1000);
-	if (detect_death(philo))
-		return (unlock_fork(first_fork, second_fork));
-	philo->meals_eaten++;
+	if (!detect_death(philo))
+	{
+		philo->meals_eaten++;
+		philo->last_meal = get_time_in_ms();
+	}
 	unlock_fork(first_fork, second_fork);
 }
 
