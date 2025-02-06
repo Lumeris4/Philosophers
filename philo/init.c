@@ -25,12 +25,12 @@ int	init_data(t_data *data, char **argv)
 	int	i;
 
 	i = 0;
-	data->num_philos = atoi(argv[1]);
-	data->time_to_die = atoi(argv[2]);
-	data->time_to_eat = atoi(argv[3]);
-	data->time_to_sleep = atoi(argv[4]);
+	data->num_philos = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
-		data->number_time = atoi(argv[5]);
+		data->number_time = ft_atoi(argv[5]);
 	else
 		data->number_time = -1;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
