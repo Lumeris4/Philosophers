@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 13:40:54 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/04 10:27:28 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:34:31 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ bool		check_end(t_philosopher *philo);
 bool		detect_death(t_philosopher *philo);
 void		*philosopher_routine(void *arg);
 void		mutex_print(t_philosopher *philo, char *str);
+void		unlock_fork(pthread_mutex_t *first_fork,
+				pthread_mutex_t *second_fork);
 #endif

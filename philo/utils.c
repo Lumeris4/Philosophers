@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:46:46 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/01 17:12:05 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/06 09:33:43 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,11 @@ bool	ft_isdigit_str(char *str)
 		i++;
 	}
 	return (true);
+}
+
+void	unlock_fork(pthread_mutex_t *first_fork,
+	pthread_mutex_t *second_fork)
+{
+	pthread_mutex_unlock(first_fork);
+	pthread_mutex_unlock(second_fork);
 }
