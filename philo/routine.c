@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:06:03 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/06 10:31:04 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:38:39 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static void	one_philo(t_philosopher *philo)
 void	*philosopher_routine(void *arg)
 {
 	t_philosopher	*philo;
-	long long		start_time;
 
 	philo = (t_philosopher *)arg;
 	if (philo->data->num_philos == 1)
@@ -91,16 +90,9 @@ void	*philosopher_routine(void *arg)
 		if (philo->id % 2 == 0)
 			usleep(1000);
 		philo_eat(philo);
-		mutex_print(philo, "is sleeping\n");
-		start_time = get_time_in_ms();
-		while (get_time_in_ms() - start_time < philo->data->time_to_eat)
-		{
-			if (detect_death(philo))
-				return (NULL);
-			usleep(1000);
-		}
-		mutex_print(philo, "is thinking\n");
-		usleep(1000);
+		if (detect_death(philo))
+			return (NULL);
+		philosopher_sleep_and_think(philo);
 	}
 	return (NULL);
 }

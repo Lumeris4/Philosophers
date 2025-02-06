@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 09:46:46 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/02/06 09:33:43 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/02/06 10:38:48 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,20 @@ void	unlock_fork(pthread_mutex_t *first_fork,
 {
 	pthread_mutex_unlock(first_fork);
 	pthread_mutex_unlock(second_fork);
+}
+
+void	philosopher_sleep_and_think(t_philosopher *philo)
+{
+	long long	start_time;
+
+	mutex_print(philo, "is sleeping\n");
+	start_time = get_time_in_ms();
+	while (get_time_in_ms() - start_time < philo->data->time_to_eat)
+	{
+		if (detect_death(philo))
+			return ;
+		usleep(1000);
+	}
+	mutex_print(philo, "is thinking\n");
+	usleep(1000);
 }
